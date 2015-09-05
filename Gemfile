@@ -9,6 +9,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'postgres_ext'
 gem 'pg_search'
 gem 'puma'
+gem 'devise'
 
 group :development, :test do
   gem 'byebug'
@@ -35,5 +36,6 @@ group :development do
   gem 'poltergeist'
   gem 'simplecov', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'faker'
 end
