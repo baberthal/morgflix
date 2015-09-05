@@ -1,0 +1,28 @@
+{
+  "name": "morgflix",
+  "version": "0.0.0",
+  "authors": [
+    "Morgan Lieberthal <morgan@jmorgan.org>"
+  ],
+  "description": "A netflix clone",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "node",
+    "movies",
+    "streaming",
+    "tv",
+    "shows"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ]
+}
