@@ -46,6 +46,11 @@ module TVDB
       HTTParty.get('http://thetvdb.com/api/Updates.php?type=none')
     end
 
+    def languages
+      @languages ||=
+        HTTParty.get("#{xml_mirror}/languages.xml")['Languages']['Language']
+    end
+
     private
 
     def _fetch_mirrors
