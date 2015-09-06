@@ -13,11 +13,6 @@ gem 'devise'
 
 group :development, :test do
   gem 'byebug'
-end
-
-group :development do
-  gem 'web-console', '~> 2.0'
-  gem 'spring'
   gem 'colorize'
   gem 'rspec-rails'
   gem 'pry-rails'
@@ -38,4 +33,6 @@ group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'faker'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
