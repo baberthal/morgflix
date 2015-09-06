@@ -6,10 +6,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
+gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'postgres_ext'
 gem 'pg_search'
 gem 'puma'
 gem 'devise'
+gem 'httparty'
 
 group :development, :test do
   gem 'byebug'
