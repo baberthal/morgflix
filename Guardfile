@@ -13,7 +13,7 @@ guard :bundler do
   files.each { |file| watch(helper.real_path(file)) }
 end
 
-guard 'livereload' do
+guard 'livereload', host: '127.0.0.1' do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{public/.+\.(css|js|html)})
@@ -25,7 +25,7 @@ end
 group :red_green_refactor, halt_on_fail: true do
   rspec_opts = {
     results_file: 'tmp/guard_rspec_results.txt',
-    cmd: 'zeus rspec',
+    cmd: 'rspec',
     all_after_pass: true,
     failed_mode: :focus
   }
