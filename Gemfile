@@ -12,6 +12,7 @@ gem 'pg_search'
 gem 'puma'
 gem 'devise'
 gem 'httparty'
+gem 'psych'
 
 group :development, :test do
   gem 'byebug'
