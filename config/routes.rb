@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  get 'secret/index'
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  authenticated :user do
+    root 'secret#index', as: :authenticated_root
+  end
+
+  devise_scope :user do
+    root to: 'users/sessions#new'
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
   # See how all your routes lay out with "rake routes".
