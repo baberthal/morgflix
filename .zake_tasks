@@ -28,8 +28,11 @@ rails:update
 routes
 secret
 spec
+spec:controllers
+spec:helpers
 spec:lib
 spec:models
+spec:views
 stats
 time:zones:all
 tmp:clear
