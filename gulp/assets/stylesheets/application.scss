@@ -1,0 +1,11 @@
+@import 'bootstrap/scss/bootstrap';
+
+.white-bg {
+  background-color: #fff;
+}
+
+nav.navbar {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+//  vim: set ts=8 sw=2 tw=0 ft=scss et :
