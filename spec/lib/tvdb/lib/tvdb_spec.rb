@@ -1,5 +1,5 @@
 require 'rails_helper'
-require './lib/tvdb/tvdb'
+require './lib/tvdb/lib/tvdb'
 
 RSpec.describe TVDB do
   describe 'singleton methods' do
@@ -47,8 +47,26 @@ RSpec.describe TVDB do
     end
 
     describe '#xml_mirror' do
-      it 'returns a properly formatted morror' do
-        expect(described_class.xml_mirror).to match(%r{thetvdb\.com/api})
+      context 'without options' do
+        it 'returns a properly formatted mirror' do
+          expect(described_class.xml_mirror).to match(%r{thetvdb\.com/api})
+        end
+      end
+
+      context 'with options' do
+        describe 'with key: true' do
+          it 'returns a properly formatted mirror' do
+            expect(described_class.xml_mirror(key: true))
+              .to include ENV['TVDB_KEY']
+          end
+        end
+
+        describe 'with key: false' do
+          it 'returns a properly formatted mirror' do
+            expect(described_class.xml_mirror(key: false))
+              .to_not include ENV['TVDB_KEY']
+          end
+        end
       end
     end
 
