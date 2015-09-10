@@ -1,7 +1,8 @@
 module GulpHelpers
   class Config
-    attr_accessor :asset_path, :options,
-                  :stylesheet_path, :javascript_path, :image_path
+    attr_accessor :asset_path, :options
+    attr_reader :stylesheet_path, :javascript_path, :image_path
+
     def initialize(opts = {})
       options = merge_defaults(opts)
       @asset_path = Pathname.new(options[:base_path])
