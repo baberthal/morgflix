@@ -19,14 +19,14 @@ module GulpHelpers
 
     def method_missing(meth, *args)
       if config.respond_to?(meth)
-        config.send(meth, *args)
+        config.public_send(meth, *args)
       else
         super
       end
     end
 
     def respond_to?(meth)
-      config.respond_to? meth
+      config.respond_to?(meth) || super
     end
   end
 end
