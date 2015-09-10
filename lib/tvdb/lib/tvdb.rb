@@ -43,24 +43,28 @@ module TVDB
     end
 
     def previous_time
-      HTTParty.get('http://thetvdb.com/api/Updates.php?type=none')
+      _get('http://thetvdb.com/api/Updates.php?type=none')['Items']['Time']
     end
 
     def languages
       @languages ||=
-        HTTParty.get("#{xml_mirror}/languages.xml")['Languages']['Language']
+        _get("#{xml_mirror}/languages.xml")['Languages']['Language']
     end
 
     private
 
     def _fetch_mirrors
-      HTTParty.get("http://thetvdb.com/api/#{api_key}/mirrors.xml")
+      _get("http://thetvdb.com/api/#{api_key}/mirrors.xml")
     end
 
     def _format_mirror(mirror_base_uri, options = {})
       return "#{mirror_base_uri}/api/#{api_key}" unless options
       return "#{mirror_base_uri}/api" if options[:key] == false
       "#{mirror_base_uri}/api/#{api_key}"
+    end
+
+    def _get(uri)
+      HTTParty.get(uri)
     end
   end
 end
