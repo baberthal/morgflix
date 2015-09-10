@@ -81,5 +81,28 @@ RSpec.describe TVDB do
         expect(described_class.zip_mirror).to match(%r{thetvdb\.com/api})
       end
     end
+
+    describe '#previous_time' do
+      it 'returns a timestamp' do
+        expect(described_class.previous_time).to match(/[0-9]{10}/)
+      end
+    end
+
+    describe '#options' do
+      it 'returns an Options object with the TVDB api_key' do
+        expect(described_class.options).to be_a TVDB::Options
+        expect(described_class.options[:api_key]).to eq ENV['TVDB_KEY']
+      end
+    end
+
+    describe '#options=' do
+      before :each do
+        described_class.options = { api_key: '1234567890' }
+      end
+
+      it 'returns a new Options object with the passed options' do
+        expect(described_class.options[:api_key]).to eq '1234567890'
+      end
+    end
   end
 end
