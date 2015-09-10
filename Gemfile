@@ -4,6 +4,7 @@ gem 'rails', '4.2.4'
 gem 'pg'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sass-rails'
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'dotenv-rails', require: 'dotenv/rails-now'
@@ -12,6 +13,9 @@ gem 'pg_search'
 gem 'puma'
 gem 'devise'
 gem 'httparty'
+gem 'psych'
+gem 'haml'
+gem 'haml-rails'
 
 group :development, :test do
   gem 'byebug'

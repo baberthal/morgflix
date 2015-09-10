@@ -25,7 +25,7 @@ end
 group :red_green_refactor, halt_on_fail: true do
   rspec_opts = {
     results_file: 'tmp/guard_rspec_results.txt',
-    cmd: 'rspec',
+    cmd: 'zeus rspec',
     all_after_pass: true,
     failed_mode: :focus
   }
