@@ -1,6 +1,6 @@
 require 'httparty'
-require_relative 'lib/options'
-require_relative 'lib/mirror_list'
+require_relative 'tvdb/options'
+require_relative 'tvdb/mirror_list'
 
 module TVDB
   class << self
@@ -30,16 +30,16 @@ module TVDB
       @mirror_list ||= MirrorList.new(_fetch_mirrors)
     end
 
-    def xml_mirror
-      _format_mirror(mirror_list.xml.sample)
+    def xml_mirror(options = {})
+      _format_mirror(mirror_list.xml.sample, options)
     end
 
-    def banner_mirror
-      _format_mirror(mirror_list.banner.sample)
+    def banner_mirror(options = {})
+      _format_mirror(mirror_list.banner.sample, options)
     end
 
-    def zip_mirror
-      _format_mirror(mirror_list.zip.sample)
+    def zip_mirror(options = {})
+      _format_mirror(mirror_list.zip.sample, options)
     end
 
     def previous_time
@@ -57,10 +57,12 @@ module TVDB
       HTTParty.get("http://thetvdb.com/api/#{api_key}/mirrors.xml")
     end
 
-    def _format_mirror(mirror_base_uri)
-      "#{mirror_base_uri}/api/#{api_key}/"
+    def _format_mirror(mirror_base_uri, options = {})
+      return "#{mirror_base_uri}/api/#{api_key}" unless options
+      return "#{mirror_base_uri}/api" if options[:key] == false
+      "#{mirror_base_uri}/api/#{api_key}"
     end
   end
 end
 
-require_relative './lib/client'
+require_relative 'tvdb/client'
