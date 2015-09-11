@@ -2,7 +2,7 @@
 'use strict';
 
 var gulp = require('gulp'),
-    bs = require('browser-sync'),
+    // bs = require('browser-sync'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     handleErrors = require('../util/handleErrors'),
@@ -16,6 +16,6 @@ gulp.task('sass', function() {
     .pipe(autoprefixer({ browsers: config.browsers }))
     .on('error', handleErrors)
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(config.dest))
-    .pipe(bs.stream());
+    .pipe(gulp.dest(config.dest));
+    // .pipe(bs.reload({stream: true}));
 });

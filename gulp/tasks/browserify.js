@@ -3,7 +3,7 @@
 
 var _ = require('lodash');
 var browserify = require('browserify');
-var bs = require('./browser_sync');
+// var bs = require('browser-sync');
 var bundleLogger = require('../util/bundleLogger');
 var config = require('../config').browserify;
 var gulp = require('gulp');
@@ -40,8 +40,7 @@ var browserifyTask = function(callback, devMode) {
                 .on('error', handleErrors)
                 .pipe(source(bundleConfig.outputName))
                 .pipe(gulp.dest(bundleConfig.dest))
-                .on('end', reportFinished)
-                .pipe(bs.stream());
+                .on('end', reportFinished);
         };
 
         if (devMode) {

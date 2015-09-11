@@ -4,7 +4,8 @@
 var sources = './gulp/assets',
     pubDest = './public/assets',
     bowerFiles = './gulp/assets/bower_components',
-    bootstrapFiles = './gulp/assets/bower_components/bootstrap';
+    bootstrapFiles = './gulp/assets/bower_components/bootstrap',
+    jsManifest = require('./js-manifest');
 
 var autoprefixerBrowsers =  [
     'ie >= 10',
@@ -25,6 +26,11 @@ module.exports = {
     browserSync: {
         proxy: 'localhost:3000',
         files: ['./app/views/**']
+    },
+    javascripts: {
+        headjs: jsManifest.headjs,
+        src: jsManifest.bowerComponents,
+        dest: pubDest + '/javascripts'
     },
     sass: {
         src: sources + '/stylesheets/**/*.scss',

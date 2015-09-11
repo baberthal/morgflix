@@ -1,12 +1,11 @@
 /* jslint node: true */
-'use strict';
+// 'use strict';
 
-var browserSync = require('browser-sync').create();
-var gulp = require('gulp');
-var config = require('../config').browserSync;
+// var browserSync = require('browser-sync');
+// var path = require('path');
+// var config = require('../config').browserSync;
+// var gulp = require('gulp');
 
-gulp.task('browserSync', function() {
-    browserSync.init(config);
-});
-
-module.exports = browserSync;
+// gulp.task('browserSync', function() {
+//     browserSync(config);
+// });
