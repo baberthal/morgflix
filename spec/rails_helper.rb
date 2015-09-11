@@ -18,7 +18,7 @@ end
 unless zeus_running?
   require 'simplecov'
   SimpleCov.start 'rails'
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -33,8 +33,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:all) { DeferredGarbageCollection.start }
-  config.after(:all) { DeferredGarbageCollection.reconsider }
+  # config.before(:all) { DeferredGarbageCollection.start }
+  # config.after(:all) { DeferredGarbageCollection.reconsider }
 
   config.around(:each, type: :feature, js: true) do |example|
     DatabaseCleaner.strategy = :truncation

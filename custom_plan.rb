@@ -28,7 +28,7 @@ class CustomPlan < Zeus::Rails
   def _load_all_files
     _load_lib_files
     _load_app_files
-    _load_support_files
+    # _load_support_files
   end
 end
 
