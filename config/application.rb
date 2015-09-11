@@ -8,7 +8,7 @@ require 'active_record/railtie'
 require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
-require 'sprockets/railtie'
+# require 'sprockets/railtie'
 # require 'rails/test_unit/railtie'
 
 # Require the gems listed in Gemfile, including any gems
@@ -22,7 +22,7 @@ module Morgflix
     config.active_record.raise_in_transactional_callbacks = true
     config.generators do |g|
       g.test_framework :rspec
-      g.javascripts false
+      g.assets false
     end
 
     config.autoload_paths << Rails.root.join('lib')
