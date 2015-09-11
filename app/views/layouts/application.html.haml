@@ -1,7 +1,30 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{ charset: "utf-8" }
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %meta{:content => "Polymer Starter Kit", :name => "generator"}
+    / Chrome for Android theme color
+    %meta{:content => "#303F9F", :name => "theme-color"}
+    / Web Application Manifest
+    %link{:href => "manifest.json", :rel => "manifest"}
+    / Tile color for Win8
+    %meta{:content => "#3372DF", :name => "msapplication-TileColor"}
+    / Add to homescreen for Chrome on Android
+    %meta{:content => "yes", :name => "mobile-web-app-capable"}
+    %meta{:content => "PSK", :name => "application-name"}
+    %link{:href => "images/touch/chrome-touch-icon-192x192.png", :rel => "icon", :sizes => "192x192"}
+    / Add to homescreen for Safari on iOS
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
+    %meta{:content => "black", :name => "apple-mobile-web-app-status-bar-style"}
+    %meta{:content => "Polymer Starter Kit", :name => "apple-mobile-web-app-title"}
+    %link{:href => "images/touch/apple-touch-icon.png", :rel => "apple-touch-icon"}
+    / Tile icon for Win8 (144x144)
+    %meta{:content => "images/touch/ms-touch-icon-144x144-precomposed.png", :name => "msapplication-TileImage"}
+    %script{:src => "bower_components/webcomponentsjs/webcomponents-lite.js"}
+    %link{:href => "elements/elements.html", :rel => "import"}
+    / endreplace
     %title Morgflix
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
