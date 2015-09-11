@@ -9,7 +9,7 @@ require 'factory_girl'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 require 'faker'
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 def zeus_running?
   File.exist? 'zeus.sock'
@@ -18,7 +18,7 @@ end
 unless zeus_running?
   require 'simplecov'
   SimpleCov.start 'rails'
-  # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -27,6 +27,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   # config.include Devise::TestHelpers, type: :controller
   # config.extend ControllerMacros, type: :controller
+  config.include DummyTVDB, dummy_tvdb: true
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
