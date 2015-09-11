@@ -10,6 +10,10 @@ module TVDB
       options[:api_key]
     end
 
+    def api_key=(new_key)
+      @options[:api_key] = new_key
+    end
+
     def typemasks
       {
         xml: %w( 1 3 5 7 ),

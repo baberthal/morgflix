@@ -3,9 +3,23 @@ require './lib/tvdb/lib/tvdb'
 
 RSpec.describe TVDB do
   describe 'singleton methods' do
+    before :each do
+      described_class.options[:api_key] = ENV['TVDB_KEY']
+    end
+
     it 'knows the api key' do
       expect(described_class.api_key).to_not be_nil
       expect(described_class.api_key).to eq ENV['TVDB_KEY']
+    end
+
+    describe '#api_key=' do
+      before do
+        described_class.api_key = '1234567890'
+      end
+
+      it 'sets the api_key' do
+        expect(described_class.api_key).to eq '1234567890'
+      end
     end
 
     describe '#languages' do
