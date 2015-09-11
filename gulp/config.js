@@ -3,7 +3,20 @@
 
 var sources = './gulp/assets',
     pubDest = './public/assets',
-    bowerFiles = './vendor/assets/bower_components';
+    bowerFiles = './gulp/assets/bower_components',
+    bootstrapFiles = './gulp/assets/bower_components/bootstrap';
+
+var autoprefixerBrowsers =  [
+    'ie >= 10',
+    'ie_mob >= 10',
+    'ff >= 30',
+    'chrome >= 34',
+    'safari >= 7',
+    'opera >= 23',
+    'ios >= 7',
+    'android >= 4.4',
+    'bb >= 10'
+];
 
 module.exports = {
     dest: pubDest,
@@ -15,11 +28,14 @@ module.exports = {
     },
     sass: {
         src: sources + '/stylesheets/**/*.scss',
+        bower: bowerFiles + '/**/*.scss',
+        base: sources,
         dest: pubDest + '/stylesheets',
+        browsers: autoprefixerBrowsers,
         settings: {
             indentedSyntax: false,
             imagePath: '/assets/images',
-            includePaths: [bowerFiles]
+            includePaths: [bootstrapFiles + '/scss']
         }
     },
     images: {
@@ -42,5 +58,13 @@ module.exports = {
             appendCodepoints: true,
             normalize: false
         }
+    },
+    browserify: {
+        bundleConfigs: [{
+            entries: sources + '/javascripts/application.coffee',
+            dest: pubDest + '/javascripts',
+            outputName: 'application.js',
+            extensions: ['.js', '.coffee']
+        }]
     }
 };
