@@ -1,4 +1,5 @@
 require './lib/gulp_helpers/lib/gulp_helpers'
+
 module GulpHelpers
   if Rails.env.production?
     class << self
