@@ -123,3 +123,5 @@ Session.vim
 
 .env
 public/assets
+*/bower_components
+gulp/assets/bower_components
