@@ -1,10 +1,10 @@
-.btn-group.btn-block{role: 'group', aria: { label: 'User Session Buttons' } }
+.btn-group.btn-group-block{role: 'group', aria: { label: 'User Session Buttons' } }
   - if controller_name == 'registrations'
-    = f.submit 'Sign Up', class: 'btn btn-primary btn-block'
+    = f.submit 'Sign Up', class: 'btn btn-primary'
   - if controller_name != 'sessions'
     = link_to "Log in", new_session_path(resource_name), class: 'btn btn-success-outline white-bg btn-block'
   - else
-    = f.submit "Log In", class: 'btn btn-primary btn-block'
+    = f.submit "Log In", class: 'btn btn-primary'
   - if devise_mapping.registerable? && controller_name != 'registrations'
     = link_to "Sign Up", new_registration_path(resource_name), class: 'btn btn-success-outline white-bg'
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'

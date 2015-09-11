@@ -1,0 +1,10 @@
+.btn-group-block {
+  display: block;
+  width: 100%;
+
+  > .btn {
+    display: block;
+  }
+}
+
+//  vim: set ts=8 sw=2 tw=0 ft=scss noet :
