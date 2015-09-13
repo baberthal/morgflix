@@ -32,6 +32,27 @@ module.exports = {
         src: jsManifest.bowerComponents,
         dest: pubDest + '/javascripts'
     },
+    elements: {
+        tmp: '.tmp/elements',
+        base: sources + '/elements',
+        src: sources + '/elements/**/*.html',
+        imports: sources + '/elements/elements.html',
+        styleSrc: sources + '/elements/**/*.css',
+        jsSrc: [
+            sources + '/elements/**/*.js',
+            sources + '/elements/**/*.html'
+        ],
+        browsers: autoprefixerBrowsers,
+        dest: pubDest + '/elements',
+        vulcanize: {
+            src: pubDest + '/elements/elements.vulcanized.html',
+            opts: {
+                stripComments: true,
+                inlineCss: true,
+                inlineScripts: true
+            }
+        }
+    },
     sass: {
         src: sources + '/stylesheets/**/*.scss',
         bower: bowerFiles + '/**/*.scss',
@@ -45,8 +66,8 @@ module.exports = {
         }
     },
     images: {
-        src: sources + "/images/**",
-        dest: pubDest + "/images"
+        src: sources + '/images/**',
+        dest: pubDest + '/images'
     },
     iconFont: {
         name: 'Smart Home Icons',
