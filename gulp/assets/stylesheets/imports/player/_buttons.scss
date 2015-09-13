@@ -1,0 +1,25 @@
+.player-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: $white;
+  text-align: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  cursor: default;
+  line-height: inherit;
+  outline: 0;
+  &:focus {
+    outline: 0;
+  }
+  &.ytp-panel-options {
+    float: right;
+  }
+  &:not([aria-disabled=true]):not([disabled]):not([aria-hidden=true]) {
+    cursor: pointer;
+  }
+}
+.player-button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}

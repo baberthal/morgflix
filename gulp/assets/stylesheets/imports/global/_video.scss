@@ -1,0 +1,25 @@
+#video-box > .overlays {
+  position: absolute;
+  float: left;
+  width: 100%;
+  bottom: 0;
+  background-color: rgba(#000, 0.75);
+  z-index: 300000;
+}
+
+.player-button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: #fff;
+  text-align: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  cursor: default;
+  line-height: inherit;
+  outline: 0;
+}
+
+.player-chrome-top, .player-chrome-bottom {
+  transition: opacity .25s cubic-bezier(0.0,0.0,0.2.1);
+}

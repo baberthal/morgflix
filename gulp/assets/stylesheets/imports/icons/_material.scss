@@ -1,0 +1,26 @@
+@import 'material_font_face';
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+
+  /* Webkit Browser Support */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE (WHY!??!?!) */
+  font-feature-settings: 'liga';
+}

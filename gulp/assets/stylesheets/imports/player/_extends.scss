@@ -1,0 +1,14 @@
+%extend_1 {
+  opacity: .9;
+  display: inline-block;
+  width: 36px;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: opacity .1s cubic-bezier(0.4, 0.0, 1, 1);
+  overflow: hidden;
+}
+
+%extend_2 {
+  stroke: $black_15;
+  stroke-width: 2px;
+  fill: none;
+}

@@ -1,0 +1,148 @@
+.player-chrome-top {
+  position: absolute;
+  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  text-shadow: 0 0 2px $black_50;
+  z-index: 60;
+  left: 12px;
+  right: 12px;
+  top: 0;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+  &.player-cards-available {
+    right: 48px;
+  }
+  .player-button {
+    padding-top: 6px;
+    height: 42px;
+    &:not(.player-playlist-menu-button) {
+      @extend %extend_1;
+      .player-svg-fill {
+        fill: $white;
+      }
+      .player-svg-shadow {
+        @extend %extend_2;
+      }
+    }
+    &:hover:not(.player-playlist-menu-button) {
+      opacity: 1;
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+  }
+  .player-watch-later-button {
+    float: right;
+  }
+  .player-share-button {
+    float: right;
+  }
+  .player-related-menu-button {
+    float: right;
+  }
+}
+.player-chrome-bottom {
+  position: absolute;
+  //Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  text-shadow: 0 0 2px $black_50;
+  bottom: 0;
+  height: 36px;
+  width: 100%;
+  z-index: 61;
+  padding-top: 3px;
+  text-align: left;
+  direction: ltr;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: opacity .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+.player-chrome-controls {
+  height: 36px;
+  line-height: 36px;
+  text-align: left;
+  direction: ltr;
+  .player-button {
+    @extend %extend_1;
+    height: 100%;
+    .player-svg-fill {
+      fill: $white;
+    }
+    .player-svg-shadow {
+      @extend %extend_2;
+    }
+    &:not([aria-disabled=true]):not([disabled]):hover {
+      opacity: 1;
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+  }
+  .player-play-button {
+    width: 46px;
+    float: left;
+  }
+  .player-play-button-playlist {
+    width: 40px;
+  }
+  .player-button[aria-expanded=true] {
+    opacity: 1;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+  }
+  .player-button[aria-pressed=true] {
+    opacity: 1;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: opacity .1s cubic-bezier(0.0, 0.0, 0.2, 1);
+    &:after {
+      width: 18px;
+      left: 9px;
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: left .25s cubic-bezier(0.0, 0.0, 0.2, 1), width .25s cubic-bezier(0.0, 0.0, 0.2, 1);
+    }
+  }
+  .player-button[aria-pressed] {
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 0;
+      left: 18px;
+      bottom: 7px;
+      background-color: $color_alizarin_crimson_approx;
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: left .25s cubic-bezier(0.4, 0.0, 1, 1), width .25s cubic-bezier(0.4, 0.0, 1, 1);
+    }
+  }
+  .player-subtitles-button {
+    float: right;
+  }
+  .player-settings-button {
+    float: right;
+  }
+  .player-size-button {
+    float: right;
+  }
+  .player-remote-button {
+    float: right;
+  }
+  .player-fullscreen-button {
+    float: right;
+  }
+  .player-airplay-button {
+    float: right;
+  }
+  .player-next-button {
+    float: left;
+  }
+  .player-prev-button {
+    float: left;
+  }
+  .player-mute-button {
+    float: left;
+  }
+  .player-live-badge {
+    display: none;
+    width: auto;
+  }
+  .player-live .player-live-badge {
+    display: inline-block;
+  }
+}
