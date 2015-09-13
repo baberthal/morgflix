@@ -14,4 +14,3 @@ end
 
 helpers = 'include GulpHelpers::Helpers'
 ActionView::Base.module_eval(helpers)
-Rails.application.assets.context_class.class_eval(helpers)
