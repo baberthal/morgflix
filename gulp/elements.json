@@ -1,0 +1,4 @@
+{
+  "bower": [ "paper-toolbar", "polymer", "paper-styles" ],
+  "custom": []
+}
