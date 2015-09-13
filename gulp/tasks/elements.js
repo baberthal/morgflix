@@ -22,9 +22,10 @@ gulp.task('elements:jshint', function() {
         .pipe($.jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('elements:vulcanize', ['copy'], function() {
-    return gulp.src(config.vulcanize.src)
+gulp.task('elements:vulcanize', function() {
+    return gulp.src(config.imports)
         .pipe($.vulcanize(config.vulcanize.opts))
+        .pipe($.rename('elements.html'))
         .pipe(gulp.dest(config.dest))
         .pipe($.size({title: 'elements:vulcanize'}));
 });

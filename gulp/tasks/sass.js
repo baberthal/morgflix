@@ -13,6 +13,7 @@ gulp.task('sass', function() {
     return gulp.src(config.src)
     .pipe(sourcemaps.init({debug: true}))
     .pipe(sass(config.settings))
+    .on('error', handleErrors)
     .pipe(autoprefixer({ browsers: config.browsers }))
     .on('error', handleErrors)
     .pipe(sourcemaps.write())

@@ -27,10 +27,21 @@ module.exports = {
         proxy: 'localhost:3000',
         files: ['./app/views/**']
     },
+    fonts: {
+        src: [
+            bowerFiles + '/font-awesome/fonts/**/*.{eot,ttf,woff,woff2,otf}',
+            bowerFiles + '/material-design-icons/iconfont/**/*.{eot,ttf,woff,woff2}'
+        ],
+        dest: pubDest + '/fonts'
+    },
     javascripts: {
         headjs: jsManifest.headjs,
         src: jsManifest.bowerComponents,
-        dest: pubDest + '/javascripts'
+        dest: pubDest + '/javascripts',
+        standalone: sources + '/javascripts/standalone/**/*.coffee',
+        coffeeOpts: {
+            bare: true
+        }
     },
     elements: {
         tmp: '.tmp/elements',
@@ -45,7 +56,8 @@ module.exports = {
         browsers: autoprefixerBrowsers,
         dest: pubDest + '/elements',
         vulcanize: {
-            src: pubDest + '/elements/elements.vulcanized.html',
+            src: sources + '/elements/elements.vulcanized.html',
+            dest: sources + '/elements',
             opts: {
                 stripComments: true,
                 inlineCss: true,
@@ -62,7 +74,10 @@ module.exports = {
         settings: {
             indentedSyntax: false,
             imagePath: '/assets/images',
-            includePaths: [bootstrapFiles + '/scss']
+            includePaths: [
+                bootstrapFiles + '/scss',
+                bowerFiles + '/font-awesome/scss'
+            ]
         }
     },
     images: {

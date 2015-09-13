@@ -9,4 +9,7 @@ gulp.task('watch', ['js:all', 'sass', 'watchify'], function(cb) {
     gulp.watch(config.images.src, function() { gulp.start('images'); });
     gulp.watch(config.iconFont.src, function() { gulp.start('iconFont'); });
     gulp.watch(config.bowerFiles + '**/*', function() { gulp.start('copy'); });
+    gulp.watch(config.javascripts.standalone, function() {
+        gulp.start('js:standalone');
+    });
 });

@@ -6,15 +6,9 @@ var config = require('../config');
 var $ = require('gulp-load-plugins')();
 
 gulp.task('copy', function() {
-    var bower = gulp.src([
-            'gulp/assets/bower_components/**/*',
-            '!gulp/assets/bower_components/bootstrap/**/*'
-    ]).pipe(gulp.dest(config.elements.dest));
+    var fonts = gulp.src(config.fonts.src)
+        .pipe(gulp.dest(config.fonts.dest));
 
-    var vulcanized = gulp.src(config.elements.imports)
-        .pipe($.rename('elements.vulcanized.html'))
-        .pipe(gulp.dest(config.elements.dest));
-
-    return merge(bower, vulcanized)
+    return merge(fonts)
         .pipe($.size({title: 'copy'}));
 });
