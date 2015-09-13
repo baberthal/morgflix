@@ -5,11 +5,11 @@
     %script{:src => "assets/javascripts/head_js.js"}
     %title Morgflix
     = render 'layouts/icon_links'
-    = stylesheet_link_tag 'application', media: 'all'
+    %link{ rel: 'stylesheet', media: 'all', href: 'assets/stylesheets/application.css' }
     = csrf_meta_tags
   %body
-    = javascript_include_tag 'bower_components'
-    = javascript_include_tag 'application'
+    %script{:src => "assets/javascripts/bower_components.js"}
+    %script{:src => "assets/javascripts/application.js"}
     = render 'layouts/header'
     = render 'layouts/messages'
     = yield
