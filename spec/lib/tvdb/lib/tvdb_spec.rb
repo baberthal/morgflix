@@ -86,7 +86,7 @@ RSpec.describe TVDB do
 
     describe '#banner_mirror' do
       it 'returns a properly formatted morror' do
-        expect(described_class.banner_mirror).to match(%r{thetvdb\.com/api})
+        expect(described_class.banner_mirror).to match(%r{thetvdb\.com/banners})
       end
     end
 
