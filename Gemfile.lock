@@ -330,6 +330,7 @@ DEPENDENCIES
   rubocop
   rubocop-rspec
   ruby_gntp
+  rubyzip
   sdoc (~> 0.4.0)
   selenium-webdriver
   simplecov

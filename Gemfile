@@ -15,6 +15,7 @@ gem 'httparty'
 gem 'psych'
 gem 'haml'
 gem 'haml-rails'
+gem 'rubyzip'
 
 group :development, :test do
   gem 'byebug'
