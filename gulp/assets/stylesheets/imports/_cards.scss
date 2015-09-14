@@ -1,0 +1,14 @@
+.card-morgflix {
+  background-color: $brand-primary;
+  border-color: $brand-primary;
+  > .card-block.actions {
+    background-color: $brand-info;
+    border-color: transparent;
+    border-radius: 0 0 $card-border-radius $card-border-radius;
+    border-bottom: -1px transparent;
+
+    > .btn.btn-primary-outline {
+      background-color: $white;
+    }
+  }
+}
