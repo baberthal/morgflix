@@ -18,24 +18,31 @@ RSpec.describe Series, type: :model, dummy_tvdb: true do
       end
     end
 
-    describe '#fetch_info' do
-      let(:archer_info) { dummy_archer_response }
-      let(:scraper) { instance_double('SeriesSearcher') }
-      let(:series) { create(:series, name: 'Archer (2009)') }
+    describe '#search' do
+      context 'when there is only one result' do
+        let(:series) { create(:series) }
+        let(:search_results) { single_response }
+        let(:archer_info) { dummy_info_response }
+        let(:searcher) { instance_double('SeriesSearcher') }
+        let(:scraper) { instance_double('SeriesScraper') }
 
-      before do
-        allow(SeriesSearcher).to receive(:new).and_return scraper
-        allow(scraper).to receive(:info).and_return archer_info
-      end
+        before do
+          allow(SeriesSearcher).to receive(:new).and_return searcher
+          allow(SeriesScraper).to receive(:new).and_return scraper
+          allow(searcher).to receive(:search).and_return search_results
+          allow(scraper).to receive(:info).and_return archer_info
+        end
 
-      it 'calls the info method on scraper' do
-        expect(scraper).to receive(:info).with('Archer (2009)', {})
-        series.fetch_info
-      end
+        it 'calls the search method on searcher' do
+          expect(searcher).to receive(:search).with(/Archer/, {})
+          series.search
+        end
 
-      it 'updates itself' do
-        series.reload
-        expect(series.external_id).to eq 110_381
+        it 'updates itself' do
+          series.search
+          series.reload
+          expect(series.network).to eq 'FXX'
+        end
       end
     end
   end
