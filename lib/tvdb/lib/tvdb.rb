@@ -1,4 +1,5 @@
 require 'httparty'
+require 'zip'
 require_relative 'tvdb/options'
 require_relative 'tvdb/mirror_list'
 
@@ -38,8 +39,8 @@ module TVDB
       _format_mirror(mirror_list.xml.sample, options)
     end
 
-    def banner_mirror(options = {})
-      _format_mirror(mirror_list.banner.sample, options)
+    def banner_mirror
+      "#{mirror_list.banner.sample}/banners"
     end
 
     def zip_mirror(options = {})
@@ -53,6 +54,11 @@ module TVDB
     def languages
       @languages ||=
         _get("#{xml_mirror}/languages.xml")['Languages']['Language']
+    end
+
+    def logger
+      return Rails.logger if defined?(Rails.logger)
+      Logger.new(STDOUT)
     end
 
     private
