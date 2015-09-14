@@ -126,3 +126,4 @@ public/assets
 */bower_components
 gulp/assets/bower_components
 .gulp_tasks
+.generators
