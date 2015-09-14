@@ -23,10 +23,6 @@ module.exports = {
     dest: pubDest,
     bowerFiles: bowerFiles,
     src: sources,
-    browserSync: {
-        proxy: 'localhost:3000',
-        files: ['./app/views/**']
-    },
     fonts: {
         src: [
             bowerFiles + '/font-awesome/fonts/**/*.{eot,ttf,woff,woff2,otf}',
@@ -36,9 +32,16 @@ module.exports = {
     },
     javascripts: {
         headjs: jsManifest.headjs,
-        src: jsManifest.bowerComponents,
+        bower: jsManifest.bowerComponents,
         dest: pubDest + '/javascripts',
         standalone: sources + '/javascripts/standalone/**/*.coffee',
+        coffee: {
+            src: [
+                sources + '/javascripts/application.coffee',
+                sources + 'javascripts/**/*.coffee',
+                '!' + sources + '/javascripts/standalone/**/*.coffee'
+            ]
+        },
         coffeeOpts: {
             bare: true
         }
@@ -100,13 +103,5 @@ module.exports = {
             appendCodepoints: true,
             normalize: false
         }
-    },
-    browserify: {
-        bundleConfigs: [{
-            entries: sources + '/javascripts/application.coffee',
-            dest: pubDest + '/javascripts',
-            outputName: 'application.js',
-            extensions: ['.js', '.coffee']
-        }]
     }
 };
