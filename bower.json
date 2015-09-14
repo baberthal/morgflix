@@ -29,6 +29,7 @@
     "bootstrap": "4",
     "font-awesome": "~4.4.0",
     "google-castable-video": "GoogleWebComponents/google-castable-video#^1.0.0",
+    "iron-input": "PolymerElements/iron-input#~1.0.6",
     "material-design-icons": "~2.0.0"
   }
 }
