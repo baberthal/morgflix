@@ -2,14 +2,14 @@
 %html
   %head
     = render 'layouts/meta_tags'
-    %script{:src => "assets/javascripts/head_js.js"}
+    %script{:src => "/assets/javascripts/head_js.js"}
     %title Morgflix
     = render 'layouts/icon_links'
-    %link{ rel: 'stylesheet', media: 'all', href: 'assets/stylesheets/application.css' }
+    %link{ rel: 'stylesheet', media: 'all', href: '/assets/stylesheets/application.css' }
     = csrf_meta_tags
   %body
-    %script{:src => "assets/javascripts/bower_components.js"}
-    %script{:src => "assets/javascripts/application.js"}
+    %script{:src => "/assets/javascripts/bower_components.js"}
+    %script{:src => "/assets/javascripts/application.js"}
     = render 'layouts/header'
     = render 'layouts/messages'
     = yield
