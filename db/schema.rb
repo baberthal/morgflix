@@ -11,23 +11,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911221509) do
+ActiveRecord::Schema.define(version: 20150914154527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "banners", force: :cascade do |t|
+    t.integer  "series_id",  null: false
+    t.string   "name"
+    t.binary   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "banners", ["series_id"], name: "index_banners_on_series_id", using: :btree
+
   create_table "series", force: :cascade do |t|
     t.integer  "external_id"
-    t.string   "language",    default: "en", null: false
-    t.string   "name",                       null: false
+    t.string   "language",            default: "en", null: false
+    t.string   "name",                               null: false
     t.text     "overview"
     t.datetime "first_aired"
     t.string   "network"
     t.string   "imdb_id"
     t.string   "zap2it_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "banner_info"
+    t.string   "air_day_of_week"
+    t.string   "air_time"
+    t.string   "content_rating"
+    t.text     "genres"
+    t.float    "rating"
+    t.integer  "rating_count"
+    t.integer  "runtime"
+    t.integer  "tvdb_series_id"
+    t.string   "status"
+    t.datetime "added"
+    t.integer  "added_by"
+    t.integer  "tvdb_last_update"
+    t.integer  "tvdb_tms_wanted_old"
+    t.text     "banner_options"
+    t.string   "selected_banner"
   end
 
   create_table "users", force: :cascade do |t|
