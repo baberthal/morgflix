@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root 'secret#index', as: :authenticated_root
+    resources :series
+    get 'series_search' => 'series#search'
   end
 
   devise_scope :user do
