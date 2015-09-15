@@ -32,6 +32,16 @@ module DummyTVDB
   end
   # rubocop:enable all
 
+  def raw_response
+    {
+      en: {
+        'Data' => {
+          'Series' => dummy_info_response
+        }
+      }
+    }
+  end
+
   def single_response
     {
       id: 110_381,

@@ -18,31 +18,58 @@ RSpec.describe Series, type: :model, dummy_tvdb: true do
       end
     end
 
-    describe '#search' do
-      context 'when there is only one result' do
-        let(:series) { create(:series) }
-        let(:search_results) { single_response }
-        let(:archer_info) { dummy_info_response }
-        let(:searcher) { instance_double('SeriesSearcher') }
-        let(:scraper) { instance_double('SeriesScraper') }
+    describe 'api methods' do
+      let(:series) { create(:series) }
+      let(:search_results) { single_response }
+      let(:archer_info) { dummy_info_response }
+      let(:searcher) { instance_double('SeriesSearcher') }
+      let(:scraper) { instance_double('SeriesScraper') }
 
-        before do
-          allow(SeriesSearcher).to receive(:new).and_return searcher
-          allow(SeriesScraper).to receive(:new).and_return scraper
-          allow(searcher).to receive(:search).and_return search_results
-          allow(scraper).to receive(:info).and_return archer_info
+      before do
+        allow(SeriesSearcher).to receive(:new).and_return searcher
+        allow(SeriesScraper).to receive(:new).and_return scraper
+        allow(searcher).to receive(:search).and_return search_results
+        allow(scraper).to receive(:info).and_return archer_info
+      end
+
+      describe '#needs_full_update?' do
+        context 'when it has not yet grabbed all the info from TVDB' do
+          before :each do
+            series.search
+            series.reload
+          end
+
+          it 'returns true' do
+            expect(series.needs_full_update?).to be_truthy
+          end
         end
 
-        it 'calls the search method on searcher' do
-          expect(searcher).to receive(:search).with(/Archer/, {})
-          series.search
+        context 'when it has not yet grabbed all the info from TVDB' do
+          before :each do
+            series.info
+            series.reload
+          end
+
+          it 'returns true' do
+            expect(series.needs_full_update?).to be_falsey
+          end
+        end
+      end
+
+      describe '#search' do
+        context 'when there is only one result' do
+          it 'calls the search method on searcher' do
+            expect(searcher).to receive(:search).with(/Archer/, {})
+            series.search
+          end
+
+          it 'updates itself' do
+            series.search
+            series.reload
+            expect(series.network).to eq 'FXX'
+          end
         end
 
-        it 'updates itself' do
-          series.search
-          series.reload
-          expect(series.network).to eq 'FXX'
-        end
       end
     end
   end
