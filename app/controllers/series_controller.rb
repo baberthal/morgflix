@@ -21,15 +21,6 @@ class SeriesController < ApplicationController
   def edit
   end
 
-  def search
-    @searcher = SeriesSearcher.new
-    @results = @searcher.search(params[:q])
-    respond_to do |format|
-      format.js
-      format.json
-    end
-  end
-
   # POST /series
   # POST /series.json
   def create
