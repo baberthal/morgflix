@@ -24,4 +24,6 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.assets.debug = true
   config.assets.digest = false
+
+  config.cache_store = :dalli_store
 end
