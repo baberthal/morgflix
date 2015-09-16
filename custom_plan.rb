@@ -2,12 +2,12 @@ require 'zeus/rails'
 
 class CustomPlan < Zeus::Rails
   def test(*args)
-    require 'simplecov'
-    SimpleCov.start 'rails'
+    # require 'simplecov'
+    # SimpleCov.start 'rails'
     require 'factory_girl'
     FactoryGirl.reload
-    ENV['GUARD_RSPEC_RESULTS_FILE'] = 'tmp/guard_rspec_results.txt'
-    _load_all_files
+    ENV['GUARD_RSPEC_RESULTS_FILE'] ||= 'tmp/guard_rspec_results.txt'
+    # _load_all_files
     super
   end
 
