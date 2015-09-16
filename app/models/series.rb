@@ -3,13 +3,11 @@ class Series < ActiveRecord::Base
   include Scrapable
 
   validates :name, presence: true, uniqueness: true
+  validates :external_id, presence: true, uniqueness: true
   scope :latest, -> { order(created_at: :desc).limit(5) }
 
   serialize :genres, Array
 
   has_many :banners
-
-  def needs_full_update?
-    external_id && overview.nil?
-  end
+  has_many :actors
 end
