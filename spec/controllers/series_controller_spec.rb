@@ -3,17 +3,7 @@ require 'rails_helper'
 RSpec.describe SeriesController, :devise, :dummy_tvdb, type: :controller do
   context 'when a user is logged in' do
     login_user
-    let(:searcher) { instance_double('SeriesSearcher') }
-    let(:scraper) { instance_double('SeriesScraper') }
-    let(:archer_info) { dummy_info_response }
-    let(:search_results) { dummy_search_response }
-
-    before do
-      allow(SeriesSearcher).to receive(:new).and_return searcher
-      allow(SeriesScraper).to receive(:new).and_return scraper
-      allow(searcher).to receive(:search).and_return search_results
-      allow(scraper).to receive(:info).and_return archer_info
-    end
+    stub_tvdb
 
     let(:invalid_attributes) { { name: nil } }
 
@@ -57,13 +47,13 @@ RSpec.describe SeriesController, :devise, :dummy_tvdb, type: :controller do
         end
 
         it 'assigns a newly created series as @series' do
-          post :create, series: attributes_for(:series)
+          post :create, series: { name: 'Archer (2009)', external_id: 110_381 }
           expect(assigns(:series)).to be_a(Series)
           expect(assigns(:series)).to be_persisted
         end
 
         it 'redirects to the created series' do
-          post :create, series: attributes_for(:series)
+          post :create, series: { name: 'Archer (2009)', external_id: 110_381 }
           expect(response).to redirect_to(Series.last)
         end
       end

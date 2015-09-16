@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe SecretController, :devise, :dummy_tvdb, type: :controller do
   login_user
+  stub_tvdb
+
   describe 'GET #index' do
     it 'returns http success' do
       get :index
@@ -25,17 +27,9 @@ RSpec.describe SecretController, :devise, :dummy_tvdb, type: :controller do
   end
 
   describe '#search' do
-    let(:searcher) { instance_double('SeriesSearcher') }
-    let(:response) { dummy_search_response }
-
-    before :each do
-      allow(SeriesSearcher).to receive(:new).and_return searcher
-      allow(searcher).to receive(:search).and_return response
-    end
-
     it 'returns the search results for the given query' do
       get :search, q: 'Archer'
-      expect(assigns(:results)).to eq response
+      expect(assigns(:results).first.name).to match(/Archer/)
     end
   end
 end
