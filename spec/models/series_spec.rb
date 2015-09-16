@@ -20,71 +20,30 @@ RSpec.describe Series, type: :model, dummy_tvdb: true do
 
     describe 'api methods' do
       let(:series) { create(:series) }
-      let(:search_results) { single_response }
-      let(:archer_info) { dummy_info_response }
-      let(:searcher) { instance_double('SeriesSearcher') }
-      let(:scraper) { instance_double('SeriesScraper') }
+      stub_tvdb
 
-      before do
-        allow(SeriesSearcher).to receive(:new).and_return searcher
-        allow(SeriesScraper).to receive(:new).and_return scraper
-        allow(searcher).to receive(:search).and_return search_results
-        allow(scraper).to receive(:info).and_return archer_info
-      end
-
-      describe '#needs_full_update?' do
-        context 'when it has not yet grabbed all the info from TVDB' do
-          before :each do
-            series.search
-            series.reload
-          end
-
-          it 'returns true' do
-            expect(series.needs_full_update?).to be_truthy
-          end
-        end
-
-        context 'when it has not yet grabbed all the info from TVDB' do
-          before :each do
-            series.info
-            series.reload
-          end
-
-          it 'returns true' do
-            expect(series.needs_full_update?).to be_falsey
-          end
-        end
-      end
-
-      describe '#search' do
+      describe '#search_tvdb' do
         context 'when there is only one result' do
-          it 'calls the search method on searcher' do
-            expect(searcher).to receive(:search).with(/Archer/, {})
-            series.search
-          end
-
-          it 'updates itself' do
-            series.search
-            series.reload
-            expect(series.network).to eq 'FXX'
+          it 'calls the search_series method on TVDB' do
+            expect(TVDB).to receive(:series_search).with(/Archer/, {})
+            described_class.search_tvdb('Archer')
           end
         end
-
-      end
-    end
-  end
-
-  describe 'class methods' do
-    describe '#base_dir' do
-      it 'returns the base directory for Series' do
-        expect(described_class.base_dir).to be_a Pathname
       end
     end
 
-    describe '#base_dir=' do
-      it 'sets the base directory for Series' do
-        described_class.base_dir = 'media', 'shows'
-        expect(described_class.base_dir.to_s).to match(%r{media/shows})
+    describe 'class methods' do
+      describe '#base_dir' do
+        it 'returns the base directory for Series' do
+          expect(described_class.base_dir).to be_a Pathname
+        end
+      end
+
+      describe '#base_dir=' do
+        it 'sets the base directory for Series' do
+          described_class.base_dir = 'media', 'shows'
+          expect(described_class.base_dir.to_s).to match(%r{media/shows})
+        end
       end
     end
   end

@@ -1,6 +1,13 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
+
+if ENV['COVERAGE']
+  require 'simplecov'
+  SimpleCov.start('rails')
+  Dir["#{Rails.root}/{app,lib,spec/support}/**/*.rb"].each { |f| load f }
+end
+
 # Prevent database truncation if the environment is production
 abort('ABORT! Production mode!') if Rails.env.production?
 require 'rspec/rails'
@@ -16,8 +23,6 @@ def zeus_running?
 end
 
 unless zeus_running?
-  require 'simplecov'
-  SimpleCov.start 'rails'
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
 
@@ -62,3 +67,7 @@ RSpec.configure do |config|
 end
 
 Capybara.javascript_driver = :poltergeist
+
+def extract_name
+  ->(hash) { hash['series_name'] }
+end
