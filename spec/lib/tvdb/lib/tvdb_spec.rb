@@ -118,5 +118,24 @@ RSpec.describe TVDB do
         expect(described_class.options[:api_key]).to eq '1234567890'
       end
     end
+
+    describe '#search', :dummy_tvdb do
+      context 'with a sort direction' do
+        let(:results) { dummy_search_response }
+        before do
+          allow(TVDB::BasicSearch).to receive(:parsed_response)
+            .and_call_original
+        end
+
+        it 'sorts according to the directions ' do
+          sorted = described_class.search(
+            'Archer',
+            sort_by: :first_aired,
+            order: :desc
+          )
+          expect(sorted.first.name).to eq 'Archer (2009)'
+        end
+      end
+    end
   end
 end
