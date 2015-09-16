@@ -61,6 +61,8 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run_excluding :slow unless ENV['SLOW_SPECS']
 
+  config.profile_examples = true if ENV['PROFILE']
+
   config.order = :random
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
