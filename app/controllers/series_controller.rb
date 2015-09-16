@@ -68,7 +68,7 @@ class SeriesController < ApplicationController
   end
 
   def series_params
-    params.require(:series).permit(:name, :language)
+    params.require(:series).permit(:name, :language, :external_id)
   end
 
   def _html_success(redirect, message)

@@ -5,7 +5,7 @@ class SecretController < ApplicationController
   end
 
   def search
-    @results = Series.search_tvdb(params[:q])
+    @results = Series.search(params[:q], sort_by: :first_aired, order: :desc)
     respond_to do |fmt|
       fmt.js
       fmt.json { render json: @results }
