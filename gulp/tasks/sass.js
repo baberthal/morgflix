@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     handleErrors = require('../util/handleErrors'),
     notify = require('../util/custom_notify'),
     config = require('../config').sass,
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    reload = require('./browser_sync');
 
 gulp.task('sass', function() {
     return gulp.src(config.src)
@@ -18,6 +19,6 @@ gulp.task('sass', function() {
     .on('error', handleErrors)
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dest))
-    .pipe(notify.send(notify.opts({}, 'sass')));
-    // .pipe(bs.reload({stream: true}));
+    .pipe(notify.send(notify.opts({}, 'sass')))
+    .pipe(reload({stream: true}));
 });

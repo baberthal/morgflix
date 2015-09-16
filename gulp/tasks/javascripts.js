@@ -8,14 +8,17 @@ var gulp = require('gulp'),
     handleErrors = require('../util/handleErrors'),
     notify = require('../util/custom_notify'),
     // Growl = require('node-notifier').Growl,
-    coffee = require('gulp-coffee');
+    coffee = require('gulp-coffee'),
+    reload = require('./browser_sync');
 
 gulp.task('js:bower', function() {
     return gulp.src(config.bower)
         .pipe(maps.init())
         .pipe(concat('bower_components.js'))
         .pipe(maps.write())
-        .pipe(gulp.dest(config.dest));
+        .pipe(gulp.dest(config.dest))
+        .pipe(reload({stream: true}))
+        .pipe(notify.send(notify.opts({}, 'js:bower')));
 });
 
 gulp.task('js:head', function() {
@@ -23,7 +26,9 @@ gulp.task('js:head', function() {
         .pipe(maps.init())
         .pipe(concat('head_js.js'))
         .pipe(maps.write())
-        .pipe(gulp.dest(config.dest));
+        .pipe(gulp.dest(config.dest))
+        .pipe(reload({stream: true}))
+        .pipe(notify.send(notify.opts({}, 'js:head')));
 });
 
 gulp.task('js:standalone', function() {
@@ -32,7 +37,9 @@ gulp.task('js:standalone', function() {
         .pipe(coffee(config.coffee.opts))
         .on('error', handleErrors)
         .pipe(maps.write())
-        .pipe(gulp.dest(config.dest));
+        .pipe(gulp.dest(config.dest))
+        .pipe(reload({stream: true}))
+        .pipe(notify.send(notify.opts({}, 'js:standalone')));
 });
 
 gulp.task('js:coffee', function() {
@@ -46,8 +53,8 @@ gulp.task('js:coffee', function() {
         .on('error', handleErrors)
         .pipe(maps.write())
         .pipe(gulp.dest(config.dest))
+        .pipe(reload({stream: true}))
         .pipe(notify.send(notify.opts({}, 'js:coffee')));
-        // .pipe(custom());
 });
 
 
