@@ -2,6 +2,9 @@ require 'httparty'
 require 'zip'
 require_relative 'tvdb/options'
 require_relative 'tvdb/mirror_list'
+require_relative 'tvdb/basic_search' if defined?(Rails)
+require_relative 'tvdb/banner'
+require_relative 'tvdb/series_search'
 
 module TVDB
   class << self
@@ -61,6 +64,16 @@ module TVDB
       Logger.new(STDOUT)
     end
 
+    def search(series_name, opts = {})
+      BasicSearch.parsed_response(series_name, opts)
+    end
+
+    alias_method :series_search, :search
+
+    def series_by_id(id, options = {})
+      SeriesSearch.parsed_response(id, options)
+    end
+
     private
 
     def _fetch_mirrors
@@ -78,5 +91,3 @@ module TVDB
     end
   end
 end
-
-require_relative 'tvdb/client'
