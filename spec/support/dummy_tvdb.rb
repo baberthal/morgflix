@@ -1,4 +1,52 @@
 module DummyTVDB
+  def self.included(base)
+    base.extend GroupMethods
+  end
+
+  def read_xml(file)
+    MultiXml.parse(File.read(Rails.root.join("spec/support/tvdb/#{file}.xml")))
+  end
+
+  def dummy_raw_actors
+    read_xml('actors')
+  end
+
+  def dummy_raw_full_series
+    read_xml('en')
+  end
+
+  def dummy_raw_banners
+    read_xml('banners')
+  end
+
+  def dummy_raw_search
+    read_xml('search_results')
+  end
+
+  def bad_search_response
+    read_xml('bad_results')
+  end
+
+  module GroupMethods
+    def stub_tvdb
+      before do
+        allow(TVDB::SeriesSearch).to receive(:response)
+          .and_return dummy_raw_full
+        allow(TVDB::BasicSearch).to receive(:response)
+          .and_return dummy_search_response
+        allow(TVDB::Banner).to receive(:download).and_return true
+      end
+    end
+  end
+
+  def dummy_raw_full
+    {
+      'en' => dummy_raw_full_series,
+      'banners' => dummy_raw_banners,
+      'actors' => dummy_raw_actors
+    }
+  end
+
   # rubocop:disable Metrics/MethodLength
   def dummy_info_response
     {
@@ -52,7 +100,7 @@ module DummyTVDB
   end
 
   def dummy_search_response
-    [_archer_base, _other_archer_one, _other_archer_two]
+    dummy_raw_search['Data']['Series']
   end
 
   private
