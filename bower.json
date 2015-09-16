@@ -29,7 +29,9 @@
     "bootstrap": "4",
     "font-awesome": "~4.4.0",
     "google-castable-video": "GoogleWebComponents/google-castable-video#^1.0.0",
+    "holderjs": "~2.8.2",
     "iron-input": "PolymerElements/iron-input#~1.0.6",
+    "jquery-ujs": "~1.1.0",
     "material-design-icons": "~2.0.0"
   }
 }
