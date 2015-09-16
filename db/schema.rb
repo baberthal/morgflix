@@ -11,20 +11,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914154527) do
+ActiveRecord::Schema.define(version: 20150916180239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "banners", force: :cascade do |t|
-    t.integer  "series_id",  null: false
+  create_table "actors", force: :cascade do |t|
+    t.integer  "tvdb_actor_id", null: false
+    t.integer  "series_id"
     t.string   "name"
-    t.binary   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "image"
+    t.string   "role"
+    t.integer  "sort_order"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
+  add_index "actors", ["name"], name: "index_actors_on_name", using: :btree
+  add_index "actors", ["role"], name: "index_actors_on_role", using: :btree
+  add_index "actors", ["series_id"], name: "index_actors_on_series_id", using: :btree
+  add_index "actors", ["sort_order"], name: "index_actors_on_sort_order", using: :btree
+  add_index "actors", ["tvdb_actor_id"], name: "index_actors_on_tvdb_actor_id", using: :btree
+
+  create_table "banners", force: :cascade do |t|
+    t.integer  "series_id",         null: false
+    t.integer  "tvdb_banner_id"
+    t.string   "banner_path"
+    t.string   "banner_type"
+    t.string   "dimensions"
+    t.string   "language"
+    t.float    "rating"
+    t.integer  "rating_count"
+    t.string   "thumbnail_path"
+    t.string   "vignette_path"
+    t.string   "local_banner_path"
+    t.string   "season"
+    t.binary   "image"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "banners", ["banner_type"], name: "index_banners_on_banner_type", using: :btree
+  add_index "banners", ["dimensions"], name: "index_banners_on_dimensions", using: :btree
+  add_index "banners", ["language"], name: "index_banners_on_language", using: :btree
+  add_index "banners", ["rating"], name: "index_banners_on_rating", using: :btree
+  add_index "banners", ["rating_count"], name: "index_banners_on_rating_count", using: :btree
+  add_index "banners", ["season"], name: "index_banners_on_season", using: :btree
   add_index "banners", ["series_id"], name: "index_banners_on_series_id", using: :btree
+  add_index "banners", ["tvdb_banner_id"], name: "index_banners_on_tvdb_banner_id", using: :btree
 
   create_table "series", force: :cascade do |t|
     t.integer  "external_id"
