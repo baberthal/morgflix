@@ -16,6 +16,7 @@ gem 'psych'
 gem 'haml'
 gem 'haml-rails'
 gem 'rubyzip'
+gem 'dalli'
 
 group :development, :test do
   gem 'byebug'
@@ -24,9 +25,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-theme'
   gem 'factory_girl_rails'
-  gem 'rb-fsevent', require: false
+  gem 'rb-fsevent', require: false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec', require: false
-  gem 'guard-livereload', require: false
   gem 'guard-bundler', require: false
   gem 'guard-rubocop', require: false
   gem 'ruby_gntp'
