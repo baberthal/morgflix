@@ -1,5 +1,6 @@
 module TVDB
   class SearchResult
+    include ActiveModel::Serialization
     attr_reader :external_id, :language, :name, :overview, :banner,
                 :first_aired, :network, :imdb_id, :zap2it_id
 
@@ -13,6 +14,18 @@ module TVDB
       @imdb_id = options['IMDB_ID']
       @zap2it_id = options['zap2it_id']
       @banner = options['banner']
+    end
+
+    def attributes
+      { external_id: nil,
+        language: nil,
+        name: nil,
+        overview: nil,
+        first_aired: nil,
+        network: nil,
+        imdb_id: nil,
+        zap2it_id: nil,
+        banner: nil }
     end
   end
 end
