@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :banner do
     association :series, strategy: :build
-    name { 'banners/whatever.jpg' }
+    banner_path { 'banners/whatever.jpg' }
   end
 end

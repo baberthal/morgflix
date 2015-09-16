@@ -8,6 +8,7 @@ series_names = [
 FactoryGirl.define do
   factory :series do
     name 'Archer (2009)'
+    external_id 110_381
 
     trait :with_random_name do
       name { series_names.sample }
