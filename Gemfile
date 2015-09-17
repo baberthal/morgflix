@@ -17,6 +17,8 @@ gem 'haml'
 gem 'haml-rails'
 gem 'rubyzip'
 gem 'dalli'
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   gem 'byebug'
