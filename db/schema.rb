@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916180239) do
+ActiveRecord::Schema.define(version: 20150917015602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20150916180239) do
     t.integer  "tvdb_last_update"
     t.integer  "tvdb_tms_wanted_old"
     t.text     "banner_options"
-    t.string   "selected_banner"
+    t.string   "default_banner"
   end
 
   create_table "users", force: :cascade do |t|
