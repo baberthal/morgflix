@@ -1,18 +1,6 @@
 clearing :on
 notification :gntp, host: '127.0.0.1'
 
-guard :bundler do
-  require 'guard/bundler'
-  require 'guard/bundler/verify'
-  helper = Guard::Bundler::Verify.new
-
-  files = ['Gemfile']
-  files += Dir['*.gemspec'] if files.any? { |f| helper.uses_gemspec?(f) }
-
-  # Assume files are symlinked from somewhere
-  files.each { |file| watch(helper.real_path(file)) }
-end
-
 group :red_green_refactor, halt_on_fail: true do
   rspec_opts = {
     results_file: 'tmp/guard_rspec_results.txt',
