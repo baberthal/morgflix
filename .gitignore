@@ -127,3 +127,4 @@ public/assets
 gulp/assets/bower_components
 .gulp_tasks
 .generators
+public/banners
