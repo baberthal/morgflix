@@ -11,6 +11,19 @@ class CustomPlan < Zeus::Rails
     super
   end
 
+  def sidekiq
+    require 'sidekiq/cli'
+
+    begin
+      _sidekiq_run
+    rescue => e
+      raise e if $DEBUG
+      STDERR.puts e.message
+      STDERR.puts e.backtrace.join("\n")
+      exit 1
+    end
+  end
+
   private
 
   def _load_lib_files
@@ -29,6 +42,12 @@ class CustomPlan < Zeus::Rails
     _load_lib_files
     _load_app_files
     _load_support_files
+  end
+
+  def _sidekiq_run
+    cli = Sidekiq::CLI.instance
+    cli.parse
+    cli.run
   end
 end
 
