@@ -69,6 +69,7 @@ RSpec.configure do |config|
 end
 
 Capybara.javascript_driver = :poltergeist
+Capybara.default_max_wait_time = 5
 
 def extract_name
   ->(hash) { hash['series_name'] }
