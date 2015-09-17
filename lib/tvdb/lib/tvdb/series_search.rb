@@ -51,7 +51,14 @@ module TVDB
 
       def _guard_actors_response(response)
         return nil unless response['Actors'] && response['Actors']['Actor']
-        response['Actors']['Actor']
+        case response['Actors']['Actor']
+        when Array
+          response['Actors']['Actor']
+        when Hash
+          [response['Actors']['Actor']]
+        else
+          []
+        end
       end
     end
   end

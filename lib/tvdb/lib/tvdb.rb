@@ -50,6 +50,10 @@ module TVDB
       _format_mirror(mirror_list.zip.sample, options)
     end
 
+    def banner_preview(banner)
+      "#{banner_mirror}/#{banner}"
+    end
+
     def previous_time
       _get('http://thetvdb.com/api/Updates.php?type=none')['Items']['Time']
     end

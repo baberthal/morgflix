@@ -27,7 +27,7 @@ module TVDB
       FileUtils.mkdir_p parent_dir
       File.open(banner_path, 'wb') do |f|
         f.binmode
-        f.write TVDB.get("#{banner_url}/#{name}")
+        f.write HTTParty.get("#{banner_url}/#{name}")
       end
     end
 
